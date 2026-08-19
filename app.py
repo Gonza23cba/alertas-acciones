@@ -127,46 +127,63 @@ def calcular_alertas(df, simbolo):
         ultimo = df.iloc[-1]
         anterior = df.iloc[-2]
         
-        # --- PRIORIDAD 1: PRECIO vs MEDIAS ---
+        # ============================================
+        # PRIORIDAD 1: CRUCE DE PRECIO vs MEDIAS
+        # (Siempre primero)
+        # ============================================
         if anterior['Close'] <= anterior['M21'] and ultimo['Close'] > ultimo['M21']:
-            alertas.append(("PRECIO CRUZA M21 ALCISTA", 'verde'))
+            alertas.append(("PRECIO CRUZA M21 ALCISTA", 'verde', 1))
         elif anterior['Close'] >= anterior['M21'] and ultimo['Close'] < ultimo['M21']:
-            alertas.append(("PRECIO CRUZA M21 BAJISTA", 'rojo'))
+            alertas.append(("PRECIO CRUZA M21 BAJISTA", 'rojo', 1))
         
         if anterior['Close'] <= anterior['M30'] and ultimo['Close'] > ultimo['M30']:
-            alertas.append(("PRECIO CRUZA M30 ALCISTA", 'verde'))
+            alertas.append(("PRECIO CRUZA M30 ALCISTA", 'verde', 1))
         elif anterior['Close'] >= anterior['M30'] and ultimo['Close'] < ultimo['M30']:
-            alertas.append(("PRECIO CRUZA M30 BAJISTA", 'rojo'))
+            alertas.append(("PRECIO CRUZA M30 BAJISTA", 'rojo', 1))
         
-        # --- PRIORIDAD 2: CRUCE ENTRE MEDIAS ---
+        # ============================================
+        # PRIORIDAD 2: CRUCE ENTRE MEDIAS
+        # ============================================
         if ultimo['M21'] > ultimo['M30'] and anterior['M21'] <= anterior['M30']:
-            alertas.append(("GOLDEN CROSS (M21 > M30)", 'verde'))
+            alertas.append(("GOLDEN CROSS (M21 > M30)", 'verde', 2))
         elif ultimo['M21'] < ultimo['M30'] and anterior['M21'] >= anterior['M30']:
-            alertas.append(("DEATH CROSS (M21 < M30)", 'rojo'))
+            alertas.append(("DEATH CROSS (M21 < M30)", 'rojo', 2))
         
-        # --- PRIORIDAD 3: MACD ---
+        # ============================================
+        # PRIORIDAD 3: MACD
+        # ============================================
         if ultimo['MACD'] > ultimo['MACD_Signal'] and anterior['MACD'] <= anterior['MACD_Signal']:
-            alertas.append(("MACD ALCISTA", 'verde'))
+            alertas.append(("MACD ALCISTA", 'verde', 3))
         elif ultimo['MACD'] < ultimo['MACD_Signal'] and anterior['MACD'] >= anterior['MACD_Signal']:
-            alertas.append(("MACD BAJISTA", 'rojo'))
+            alertas.append(("MACD BAJISTA", 'rojo', 3))
         
-        # --- PRIORIDAD 4: SOPORTE/RESISTENCIA ---
+        # ============================================
+        # PRIORIDAD 4: SOPORTE/RESISTENCIA
+        # ============================================
         niveles = calcular_soporte_resistencia(df)
         if niveles:
             precio_actual = niveles['precio_actual']
             if precio_actual > niveles['resistencia']:
-                alertas.append(("ROMPIÓ RESISTENCIA", 'verde'))
+                alertas.append(("ROMPIÓ RESISTENCIA", 'verde', 4))
             if precio_actual < niveles['soporte']:
-                alertas.append(("ROMPIÓ SOPORTE", 'rojo'))
+                alertas.append(("ROMPIÓ SOPORTE", 'rojo', 4))
             if niveles['distancia_resistencia'] < 3 and niveles['distancia_resistencia'] > 0:
-                alertas.append(("CERCA DE RESISTENCIA", 'amarillo'))
+                alertas.append(("CERCA DE RESISTENCIA", 'amarillo', 4))
             if niveles['distancia_soporte'] < 3 and niveles['distancia_soporte'] > 0:
-                alertas.append(("CERCA DE SOPORTE", 'amarillo'))
+                alertas.append(("CERCA DE SOPORTE", 'amarillo', 4))
+        
+        # ============================================
+        # ORDENAR POR PRIORIDAD (menor número primero)
+        # ============================================
+        alertas.sort(key=lambda x: x[2])
+        
+        # Convertir a formato final (sin el número de prioridad)
+        alertas_final = [(texto, color) for texto, color, _ in alertas]
         
     except Exception as e:
         return None
     
-    return alertas
+    return alertas_final
 
 # ============================================
 # FUNCIÓN PRINCIPAL DE ANÁLISIS
