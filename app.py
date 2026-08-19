@@ -17,351 +17,9 @@ st.set_page_config(
 )
 
 # ============================================
-# ESTILO PROFESIONAL MEJORADO
-# ============================================
-
-st.markdown("""
-<style>
-    /* FUENTE Y FONDO */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    
-    .stApp {
-        background: #f8fafc;
-        font-family: 'Inter', -apple-system, sans-serif;
-    }
-    
-    /* ===== BANNER PRINCIPAL CON LOGO ===== */
-    .main-banner {
-        background: linear-gradient(135deg, #0d2818 0%, #1a3a2a 50%, #0f2a1a 100%);
-        padding: 24px 32px;
-        border-radius: 16px;
-        margin-bottom: 28px;
-        box-shadow: 0 4px 24px rgba(13, 40, 24, 0.25);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        border: 1px solid rgba(255,255,255,0.06);
-    }
-    
-    .main-banner .logo-area {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-    
-    .main-banner .logo-text {
-        display: flex;
-        flex-direction: column;
-        line-height: 1;
-    }
-    
-    .main-banner .logo-text .senales {
-        font-size: 2.2rem;
-        font-weight: 800;
-        color: #ffffff;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-    }
-    
-    .main-banner .logo-text .detrading {
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: #4ade80;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-top: -4px;
-    }
-    
-    .main-banner .badge-area {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        flex-wrap: wrap;
-    }
-    
-    .main-banner .badge {
-        background: rgba(255,255,255,0.08);
-        color: #e2e8f0;
-        padding: 6px 16px;
-        border-radius: 40px;
-        font-size: 0.75rem;
-        border: 1px solid rgba(255,255,255,0.06);
-        backdrop-filter: blur(4px);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .main-banner .badge .dot {
-        width: 8px;
-        height: 8px;
-        background: #4ade80;
-        border-radius: 50%;
-        display: inline-block;
-        animation: pulse-dot 2s infinite;
-    }
-    
-    @keyframes pulse-dot {
-        0% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.4; transform: scale(0.8); }
-        100% { opacity: 1; transform: scale(1); }
-    }
-    
-    /* ===== ICONOS ALCISTA/BAJISTA ===== */
-    .icono-alcista {
-        display: inline-block;
-        font-size: 1.2rem;
-        margin-right: 6px;
-    }
-    .icono-bajista {
-        display: inline-block;
-        font-size: 1.2rem;
-        margin-right: 6px;
-    }
-    
-    /* ===== TARJETAS DE ESTADÍSTICAS ===== */
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-        margin-bottom: 24px;
-    }
-    .stat-card {
-        background: #ffffff;
-        border-radius: 12px;
-        padding: 18px 22px;
-        border: 1px solid #e9edf2;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-        transition: all 0.2s;
-    }
-    .stat-card:hover {
-        border-color: #cbd5e1;
-    }
-    .stat-card .label {
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: #94a3b8;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-    }
-    .stat-card .value {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin-top: 2px;
-    }
-    .stat-card .change {
-        font-size: 0.8rem;
-        font-weight: 500;
-        color: #16a34a;
-        background: #f0fdf4;
-        padding: 2px 12px;
-        border-radius: 20px;
-        display: inline-block;
-        margin-top: 4px;
-    }
-    
-    /* ===== SECCIÓN DE ALERTAS ===== */
-    .section-alcistas {
-        background: #f0fdf4;
-        border-radius: 12px;
-        padding: 16px 20px;
-        border: 1px solid #bbf7d0;
-        margin-bottom: 16px;
-    }
-    .section-alcistas .section-title {
-        color: #16a34a;
-        font-weight: 700;
-        font-size: 1.1rem;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .section-bajistas {
-        background: #fef2f2;
-        border-radius: 12px;
-        padding: 16px 20px;
-        border: 1px solid #fecaca;
-        margin-bottom: 16px;
-    }
-    .section-bajistas .section-title {
-        color: #dc2626;
-        font-weight: 700;
-        font-size: 1.1rem;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .alerta-card {
-        background: #ffffff;
-        border-radius: 10px;
-        padding: 12px 18px;
-        border: 1px solid #e9edf2;
-        margin-bottom: 8px;
-        transition: all 0.15s;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-wrap: wrap;
-    }
-    .alerta-card:hover {
-        border-color: #cbd5e1;
-        background: #fafcff;
-    }
-    .alerta-card .ticker {
-        font-weight: 700;
-        color: #0f172a;
-        min-width: 70px;
-        font-size: 0.95rem;
-    }
-    .alerta-card .empresa {
-        color: #475569;
-        font-size: 0.85rem;
-        margin-right: 8px;
-    }
-    .alerta-card .mensaje {
-        font-weight: 500;
-        color: #0f172a;
-        flex: 1;
-        font-size: 0.9rem;
-    }
-    .alerta-card .badge-verde {
-        background: #dcfce7;
-        color: #16a34a;
-        padding: 2px 12px;
-        border-radius: 20px;
-        font-size: 0.7rem;
-        font-weight: 600;
-    }
-    .alerta-card .badge-rojo {
-        background: #fee2e2;
-        color: #dc2626;
-        padding: 2px 12px;
-        border-radius: 20px;
-        font-size: 0.7rem;
-        font-weight: 600;
-    }
-    .alerta-card .marketcap {
-        color: #94a3b8;
-        font-size: 0.7rem;
-        font-weight: 500;
-    }
-    .alerta-card .icono-alerta {
-        font-size: 1.1rem;
-    }
-    
-    /* ===== BOTÓN ACTUALIZAR ===== */
-    .stButton > button {
-        background: #0f172a !important;
-        color: white !important;
-        font-weight: 500 !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 8px 28px !important;
-        transition: all 0.2s !important;
-        font-size: 0.9rem !important;
-    }
-    .stButton > button:hover {
-        background: #1e293b !important;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2) !important;
-    }
-    
-    /* ===== ESTADO DE ACTUALIZACIÓN ===== */
-    .update-status {
-        background: #f1f5f9;
-        border-radius: 8px;
-        padding: 10px 18px;
-        color: #475569;
-        font-size: 0.85rem;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 20px;
-        border: 1px solid #e9edf2;
-    }
-    .update-status .dot-green {
-        width: 10px;
-        height: 10px;
-        background: #22c55e;
-        border-radius: 50%;
-        display: inline-block;
-        animation: pulse 2s infinite;
-    }
-    .update-status .dot-gray {
-        width: 10px;
-        height: 10px;
-        background: #94a3b8;
-        border-radius: 50%;
-        display: inline-block;
-    }
-    @keyframes pulse {
-        0% { opacity: 1; }
-        50% { opacity: 0.4; }
-        100% { opacity: 1; }
-    }
-    
-    /* ===== FOOTER ===== */
-    .footer {
-        margin-top: 40px;
-        padding: 20px 0 10px 0;
-        border-top: 1px solid #e9edf2;
-        text-align: center;
-        color: #94a3b8;
-        font-size: 0.75rem;
-    }
-    .footer strong {
-        color: #475569;
-    }
-    .footer .disclaimer {
-        color: #cbd5e1;
-        font-size: 0.7rem;
-        margin-top: 4px;
-    }
-    
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-        .stats-grid { grid-template-columns: 1fr 1fr; }
-        .main-banner { flex-direction: column; text-align: center; gap: 12px; }
-        .main-banner .logo-area { flex-direction: column; }
-        .main-banner .logo-text .senales { font-size: 1.8rem; }
-        .main-banner .logo-text .detrading { font-size: 1.3rem; }
-        .alerta-card { flex-direction: column; align-items: flex-start; gap: 4px; }
-    }
-</style>
-""", unsafe_allow_html=True)
-
-# ============================================
-# BANNER PRINCIPAL CON LOGO
-# ============================================
-
-st.markdown("""
-<div class="main-banner">
-    <div class="logo-area">
-        <div class="logo-text">
-            <span class="senales">📊 SENALES</span>
-            <span class="detrading">DE TRADING</span>
-        </div>
-    </div>
-    <div class="badge-area">
-        <div class="badge">
-            <span class="dot"></span>
-            Mercado en vivo
-        </div>
-        <div class="badge">
-            🔄 Actualización automática
-        </div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-# ============================================
 # LISTA DE ACCIONES (ACTUALIZAR AQUÍ)
 # ============================================
 
-# 🔥 ACTUALIZA ESTA LISTA CON TUS ACCIONES
 LISTA_ACCIONES = [
     "AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "NVDA", "META",
     "JPM", "V", "WMT", "PG", "KO", "PEP", "DIS", "NFLX",
@@ -430,15 +88,6 @@ def obtener_datos(simbolo):
     except:
         return None
 
-@st.cache_data(ttl=3600)
-def obtener_market_cap(simbolo):
-    try:
-        ticker = yf.Ticker(simbolo)
-        info = ticker.info
-        return info.get('marketCap', 0)
-    except:
-        return 0
-
 def calcular_soporte_resistencia(df):
     try:
         df_reciente = df.iloc[-30:]
@@ -464,11 +113,6 @@ def get_color_alerta(alerta):
         return 'rojo'
     else:
         return 'amarillo'
-
-def formatear_alerta(alerta):
-    color = get_color_alerta(alerta)
-    # No añadimos emoji aquí porque lo haremos después según la sección
-    return alerta
 
 def calcular_alertas(df, simbolo):
     alertas = []
@@ -524,16 +168,6 @@ def calcular_alertas(df, simbolo):
     
     return alertas
 
-def formatear_market_cap(market_cap):
-    if market_cap >= 1_000_000_000_000:
-        return f"${market_cap / 1_000_000_000_000:.2f}T"
-    elif market_cap >= 1_000_000_000:
-        return f"${market_cap / 1_000_000_000:.2f}B"
-    elif market_cap >= 1_000_000:
-        return f"${market_cap / 1_000_000:.2f}M"
-    else:
-        return f"${market_cap:,}"
-
 # ============================================
 # FUNCIÓN PRINCIPAL DE ANÁLISIS
 # ============================================
@@ -545,18 +179,15 @@ def ejecutar_analisis():
         if df is not None and not df.empty:
             alertas = calcular_alertas(df, accion)
             if alertas and len(alertas) > 0:
-                market_cap = obtener_market_cap(accion)
                 resultados.append({
                     'accion': accion,
                     'nombre': get_nombre_empresa(accion),
-                    'alertas': alertas,  # lista de (texto, color)
-                    'market_cap': market_cap
+                    'alertas': alertas,
                 })
-    resultados.sort(key=lambda x: x['market_cap'], reverse=True)
     return resultados
 
 # ============================================
-# INTERFAZ PRINCIPAL
+# INTERFAZ PRINCIPAL (SIN BANNER)
 # ============================================
 
 # --- INICIALIZAR SESSION STATE ---
@@ -564,31 +195,6 @@ if 'alertas_activas' not in st.session_state:
     st.session_state.alertas_activas = []
 if 'ultima_actualizacion' not in st.session_state:
     st.session_state.ultima_actualizacion = None
-
-# --- BOTÓN DE ACTUALIZACIÓN MANUAL ---
-col1, col2 = st.columns([4, 1])
-with col1:
-    if st.session_state.ultima_actualizacion:
-        st.markdown(f"""
-        <div class="update-status">
-            <span class="dot-green"></span>
-            Última actualización: {st.session_state.ultima_actualizacion.strftime('%d/%m/%Y %H:%M:%S')}
-        </div>
-        """, unsafe_allow_html=True)
-    else:
-        st.markdown("""
-        <div class="update-status">
-            <span class="dot-gray"></span>
-            Esperando primera actualización...
-        </div>
-        """, unsafe_allow_html=True)
-
-with col2:
-    if st.button("🔄 Actualizar ahora"):
-        with st.spinner("Analizando acciones..."):
-            st.session_state.alertas_activas = ejecutar_analisis()
-            st.session_state.ultima_actualizacion = datetime.now()
-        st.rerun()
 
 # --- EJECUCIÓN AUTOMÁTICA ---
 if (st.session_state.ultima_actualizacion is None or 
@@ -598,160 +204,154 @@ if (st.session_state.ultima_actualizacion is None or
         st.session_state.ultima_actualizacion = datetime.now()
     st.rerun()
 
-# --- ESTADÍSTICAS ---
+# ============================================
+# ESTADÍSTICAS + ÚLTIMA ACTUALIZACIÓN
+# ============================================
+
 total_acciones = len(LISTA_ACCIONES)
 total_alertas = len(st.session_state.alertas_activas)
 
-# Contar tipos de alertas
+# Contar alertas alcistas y bajistas
 verdes = 0
 rojos = 0
-amarillos = 0
 for item in st.session_state.alertas_activas:
     for _, color in item['alertas']:
         if color == 'verde':
             verdes += 1
         elif color == 'rojo':
             rojos += 1
-        else:
-            amarillos += 1
 
-st.markdown(f"""
-<div class="stats-grid">
-    <div class="stat-card">
-        <div class="label">📊 Total Acciones</div>
-        <div class="value">{total_acciones}</div>
-        <div class="change">Monitoreadas</div>
-    </div>
-    <div class="stat-card">
-        <div class="label">🚨 Alertas Activas</div>
-        <div class="value" style="color: {'#0f172a' if total_alertas > 0 else '#94a3b8'};">{total_alertas}</div>
-        <div class="change">{'⚠️ Hay señales' if total_alertas > 0 else '✅ Sin alertas'}</div>
-    </div>
-    <div class="stat-card">
-        <div class="label">🟢 Alcistas</div>
-        <div class="value" style="color: #16a34a;">{verdes}</div>
-        <div class="change">Señales de compra</div>
-    </div>
-    <div class="stat-card">
-        <div class="label">🔴 Bajistas</div>
-        <div class="value" style="color: #dc2626;">{rojos}</div>
-        <div class="change">Señales de venta</div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
+# Mostrar estadísticas en 4 columnas
+col1, col2, col3, col4 = st.columns(4)
 
-# ============================================
-# MOSTRAR ALERTAS SEPARADAS
-# ============================================
+with col1:
+    st.metric("📊 Total Acciones", total_acciones, help="Acciones monitoreadas")
+with col2:
+    st.metric("🚨 Alertas Activas", total_alertas, help="Total de alertas generadas")
+with col3:
+    st.metric("🟢 Alcistas", verdes, help="Señales de compra", delta_color="normal")
+with col4:
+    st.metric("🔴 Bajistas", rojos, help="Señales de venta", delta_color="inverse")
+
+# Última actualización (debajo de las estadísticas)
+if st.session_state.ultima_actualizacion:
+    st.caption(f"🔄 Última actualización: {st.session_state.ultima_actualizacion.strftime('%d/%m/%Y %H:%M:%S')}")
+else:
+    st.caption("🔄 Esperando primera actualización...")
 
 st.markdown("---")
 
-# --- SEPARAR ALERTAS POR TIPO ---
-alertas_alcistas = []
-alertas_bajistas = []
+# ============================================
+# MOSTRAR ALERTAS EN TARJETAS (4 POR FILA)
+# ============================================
 
-for item in st.session_state.alertas_activas:
-    alcistas_item = []
-    bajistas_item = []
-    for alerta_texto, color in item['alertas']:
-        if color == 'verde':
-            alcistas_item.append(alerta_texto)
-        elif color == 'rojo':
-            bajistas_item.append(alerta_texto)
-        # Las amarillas las mostramos en la sección de alcistas o bajistas según contexto
-        # Por ahora las dejamos en una sección separada o las incluimos en alcistas
-        elif color == 'amarillo':
-            alcistas_item.append(alerta_texto)  # Las ponemos en alcistas como neutras
-    
-    if alcistas_item:
-        alertas_alcistas.append({
-            'accion': item['accion'],
-            'nombre': item['nombre'],
-            'alertas': alcistas_item,
-            'market_cap': item['market_cap']
-        })
-    if bajistas_item:
-        alertas_bajistas.append({
-            'accion': item['accion'],
-            'nombre': item['nombre'],
-            'alertas': bajistas_item,
-            'market_cap': item['market_cap']
-        })
-
-# --- MOSTRAR ALERTAS ALCISTAS ---
-if alertas_alcistas:
+if st.session_state.alertas_activas:
+    # CSS para las tarjetas
     st.markdown("""
-    <div class="section-alcistas">
-        <div class="section-title">📈 ALERTAS ALCISTAS</div>
-    </div>
+    <style>
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .card-alcista {
+            background: #ffffff;
+            border: 3px solid #16a34a;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(22, 163, 74, 0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card-alcista:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(22, 163, 74, 0.25);
+        }
+        .card-bajista {
+            background: #ffffff;
+            border: 3px solid #8b1a1a;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(139, 26, 26, 0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card-bajista:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(139, 26, 26, 0.25);
+        }
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 6px;
+        }
+        .card-title .ticker {
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+        .card-title .empresa {
+            font-weight: 400;
+            color: #475569;
+            font-size: 0.85rem;
+        }
+        .card-alerta {
+            font-size: 0.9rem;
+            padding: 4px 0;
+        }
+        .card-alerta .verde {
+            color: #16a34a;
+            font-weight: 500;
+        }
+        .card-alerta .rojo {
+            color: #8b1a1a;
+            font-weight: 500;
+        }
+        .card-alerta .amarillo {
+            color: #ca8a04;
+            font-weight: 500;
+        }
+        @media (max-width: 1024px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
     """, unsafe_allow_html=True)
+
+    # --- CONSTRUIR TODAS LAS TARJETAS EN UNA SOLA VARIABLE ---
+    html_tarjetas = '<div class="card-grid">'
     
-    for item in alertas_alcistas:
+    for item in st.session_state.alertas_activas:
         accion = item['accion']
         nombre = item['nombre']
         alertas = item['alertas']
-        market_cap = item['market_cap']
-        market_cap_str = formatear_market_cap(market_cap) if market_cap > 0 else ""
         
-        st.markdown(f"""
-        <div class="alerta-card">
-            <span class="icono-alcista">🟢</span>
-            <span class="ticker">{accion}</span>
-            <span class="empresa">{nombre}</span>
-            <span class="mensaje">{alertas[0]}</span>
-            <span class="marketcap">{market_cap_str}</span>
-        </div>
-        """, unsafe_allow_html=True)
+        # Determinar si tiene alertas bajistas
+        tiene_bajista = any(color == 'rojo' for _, color in alertas)
+        card_class = "card-bajista" if tiene_bajista else "card-alcista"
         
-        for alerta in alertas[1:]:
-            st.markdown(f"""
-            <div class="alerta-card" style="margin-left: 40px; border-left: 3px solid #16a34a;">
-                <span class="icono-alcista">🟢</span>
-                <span class="mensaje">{alerta}</span>
-            </div>
-            """, unsafe_allow_html=True)
-
-# --- MOSTRAR ALERTAS BAJISTAS ---
-if alertas_bajistas:
-    st.markdown("""
-    <div class="section-bajistas">
-        <div class="section-title">📉 ALERTAS BAJISTAS</div>
-    </div>
-    """, unsafe_allow_html=True)
+        # Construir la tarjeta
+        html_tarjetas += f'<div class="{card_class}">'
+        html_tarjetas += f'<div class="card-title"><span class="ticker">{accion}</span> · <span class="empresa">{nombre}</span></div>'
+        
+        for alerta_texto, color in alertas:
+            color_class = "verde" if color == "verde" else "rojo" if color == "rojo" else "amarillo"
+            emoji = "🟢" if color == "verde" else "🔴" if color == "rojo" else "🟡"
+            html_tarjetas += f'<div class="card-alerta"><span class="{color_class}">{emoji} {alerta_texto}</span></div>'
+        
+        html_tarjetas += '</div>'
     
-    for item in alertas_bajistas:
-        accion = item['accion']
-        nombre = item['nombre']
-        alertas = item['alertas']
-        market_cap = item['market_cap']
-        market_cap_str = formatear_market_cap(market_cap) if market_cap > 0 else ""
-        
-        st.markdown(f"""
-        <div class="alerta-card">
-            <span class="icono-bajista">🔴</span>
-            <span class="ticker">{accion}</span>
-            <span class="empresa">{nombre}</span>
-            <span class="mensaje">{alertas[0]}</span>
-            <span class="marketcap">{market_cap_str}</span>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        for alerta in alertas[1:]:
-            st.markdown(f"""
-            <div class="alerta-card" style="margin-left: 40px; border-left: 3px solid #dc2626;">
-                <span class="icono-bajista">🔴</span>
-                <span class="mensaje">{alerta}</span>
-            </div>
-            """, unsafe_allow_html=True)
+    html_tarjetas += '</div>'
+    
+    # Renderizar todas las tarjetas juntas
+    st.markdown(html_tarjetas, unsafe_allow_html=True)
 
-# --- SI NO HAY ALERTAS ---
-if not alertas_alcistas and not alertas_bajistas:
+else:
     st.info("✅ No hay alertas activas en este momento. Todas las acciones están en estado neutral.")
-
-# --- FOOTER ---
-st.markdown("""
-<div class="footer">
-    <p><strong>Señales de Trading</strong> · Datos en tiempo real vía Yahoo Finance · Análisis técnico automatizado</p>
-    <p class="disclaimer">La información es orientativa y no constituye asesoramiento financiero. Las alertas se actualizan automáticamente cada 60 minutos.</p>
-</div>
-""", unsafe_allow_html=True)
